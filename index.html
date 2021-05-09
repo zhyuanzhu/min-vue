@@ -9,9 +9,15 @@
 <body>
   <div id="app">
     <p>{{ count }}</p>
+    <p>{{ msg }}</p>
+    <hr/>
+    <p v-text="msg"></p>
+    <p v-html="count"></p>
+    <input type="text" v-model="msg">
   </div>
-  <script src="./js/vue.js"></script>
+  <script src="./js/compiler.js"></script>
   <script src="./js/observer.js"></script>
+  <script src="./js/vue.js"></script>
   <script>
 
     const vm = new Vue({
@@ -25,9 +31,9 @@
       }
     })
 
-    vm.msg = {
-      test: 'test'
-    }
+    // vm.msg = {
+    //   test: 'test'
+    // }
 
 
   </script>
