@@ -15,6 +15,9 @@ class Observer {
   // 遍历所有的属性，设置 getter 和 setter
   defineReactive (obj, key, val) {
     const that = this
+    // 负责收集依赖，并发送通知
+    let dep = new Dep()
+
     // 如果val是对象，把val的内部属性设置为响应式数据
     that.walk(val)
 
@@ -22,6 +25,8 @@ class Observer {
       configurable: true,
       enumerable: true,
       get () {
+        // 收集依赖
+        Dep.target && dep.addSub(Dep.target)
         return val
       },
       set (newValue) {
@@ -30,7 +35,8 @@ class Observer {
         // 如果新赋值的属性值是对象，把该对象变成响应式
         that.walk(newValue)
 
-        // 发送通知
+        // 触发依赖，发送通知，通知观察者更新视图
+        dep.notify()
       }
     })
   }
