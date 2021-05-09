@@ -14,6 +14,10 @@ class Observer {
 
   // 遍历所有的属性，设置 getter 和 setter
   defineReactive (obj, key, val) {
+    const that = this
+    // 如果val是对象，把val的内部属性设置为响应式数据
+    that.walk(val)
+
     Object.defineProperty(obj, key, {
       configurable: true,
       enumerable: true,
@@ -23,6 +27,9 @@ class Observer {
       set (newValue) {
         if (newValue === val) return
         val = newValue
+        // 如果新赋值的属性值是对象，把该对象变成响应式
+        that.walk(newValue)
+
         // 发送通知
       }
     })

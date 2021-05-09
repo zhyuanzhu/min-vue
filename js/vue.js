@@ -10,6 +10,8 @@ class Vue {
 
     // 调用 observer 对象，监听数据变化
     new Observer(this.$data)
+
+    // 
   }
 
   _proxyData (data) {

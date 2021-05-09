@@ -17,9 +17,17 @@
     const vm = new Vue({
       el: '#app',
       data: {
-        count: 1
+        count: 1,
+        msg: 'hello',
+        person: {
+          name: 'james'
+        }
       }
     })
+
+    vm.msg = {
+      test: 'test'
+    }
 
 
   </script>
